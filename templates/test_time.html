@@ -2,29 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>hello</title>
+    <title>TestWeb</title>
+    <script type=text/javascript src="{{url_for('static', filename='jquery-3.1.1.min.js')}}"></script>
+    <script type=text/javascript >$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
+    <script type=text/javascript src="{{url_for('static', filename='test_time.js')}}"></script>
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='test_time.css')}}">
 </head>
 <body>
-    <form action="{{ url_for('test_speed') }}" method=post>
-    	<dl>
+    <div id="div_input">
+        <dl>
             <dt>URL</dt>
-            <dd><input type="text" name="url"></dd>
+            <dd><input type="text" name="url" id="input_url" size="50"></dd>
             <dt>次数（1-100）</dt>
-            <dd><input type="number" name="times" min="1" max="100"></dd>
-            <dd><input type="submit"></dd>
+            <dd><input type="number" name="times" min="1" max="100" id="input_times"></dd>
+            <dd><input type="submit" id="submit_button"></dd>
         </dl>
-    </form>
-    {% if display %}
-    <dl>
-        <dt>URL is {{ result['url'] }}</dt>
-        <dt>Total is {{ result['total'] }}</dt>
-        <dt>Success is {{ result['success'] }}</dt>
-        <dt>Fail is {{ result['fail'] }}</dt>
-        <dt>Exception is {{ result['exception'] }}</dt>
-        <dt>Average time is {{ result['average_time'] }}</dt>
-        <dt>Max time is {{ result['max_time'] }}</dt>
-        <dt>Min time is {{ result['min_time'] }}</dt>
+    </div>
+    <div id="div_result" class="result">
+        <dl>
+        <dt>URL is <span id="result_url"></span> </dt>
+        <dt>Total is <span id="result_total"></span> </dt>
+        <dt>Success is <span id="result_success"></span></dt>
+        <dt>Fail is <span id="result_fail"></span> </dt>
+        <dt>Exception is <span id="result_exception"></span> </dt>
+        <dt>Average time is <span id="result_average_time"></span> </dt>
+        <dt>Max time is <span id="result_max_time"></span> </dt>
+        <dt>Min time is <span id="result_min_time"></span> </dt>
     </dl>
-    {% endif %}
+    </div>
 </body>
 </html>
