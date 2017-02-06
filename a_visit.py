@@ -54,7 +54,13 @@ def multi_visit(url, times):
             total += 1
             fail += 1
 
-    final_result = {'total': total, 'success': success, 'fail': fail,
-                    'exception': exception, 'average_time': total_time/success,
-                    'max_time': max_time, 'min_time': min_time, 'url': url}
-    return final_result
+    if success == 0:
+        final_result = {'total': total, 'success': 0, 'fail': fail,
+                        'exception': exception, 'average_time': 0,
+                        'max_time': max_time, 'min_time': 0, 'url': url}
+        return final_result
+    else:
+        final_result = {'total': total, 'success': success, 'fail': fail,
+                        'exception': exception, 'average_time': total_time / success,
+                        'max_time': max_time, 'min_time': min_time, 'url': url}
+        return final_result
