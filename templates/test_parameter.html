@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TestWeb</title>
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='test_parameter.css')}}">
+    <script type=text/javascript src="{{url_for('static', filename='jquery-3.1.1.min.js')}}"></script>
+    <script type=text/javascript >$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
+    <script type=text/javascript src="{{url_for('static', filename='test_parameter.js')}}"></script>
+</head>
+<body>
+    <div id="div_input">
+        <p>URL <input type="text" name="url" id="input_url" size="30"></p>
+        <p>Parameter <button id="button_add">Add</button> <button id="button_remove">Remove</button></p>
+        <div>
+            <div id="div_key">
+                <p id="title_key">Key</p>
+            </div>
+            <div id="div_value">
+                <p id="title_value">Value</p>
+            </div>
+        </div>
+        <button id="button_send">Send</button>
+    </div>
+    <p class="result">Result: <p id="result"></p></p>
+</body>
+</html>

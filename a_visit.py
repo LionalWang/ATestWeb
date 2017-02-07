@@ -64,3 +64,17 @@ def multi_visit(url, times):
                         'exception': exception, 'average_time': total_time / success,
                         'max_time': max_time, 'min_time': min_time, 'url': url}
         return final_result
+
+
+def visit_for_result(url):
+    try:
+        response = urllib2.urlopen(url, data=None, timeout=30)
+        api_content = response.read()
+        # json_object = json.loads(api_content)
+    except Exception, e:
+        print e
+        status = 0
+        result = {'status': status, 'exception': e}
+    else:
+        result = api_content
+    return result

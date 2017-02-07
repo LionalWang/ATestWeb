@@ -1,7 +1,9 @@
+import json
+
 from flask import Flask, jsonify
 from flask import render_template
 from flask import request
-from a_visit import multi_visit
+from a_visit import multi_visit, visit_for_result
 
 app = Flask(__name__)
 
@@ -26,5 +28,18 @@ def test_speed():
                     })
 
 
+@app.route('/1')
+def parameter():
+    return render_template('test_parameter.html')
+
+
+@app.route('/test_parameter')
+def test_parameter():
+    url = request.args.get('url')
+    result = visit_for_result(url)
+    print type(result)
+    return jsonify({'result': result})
+
+
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True)
+    app.run(debug=True)
